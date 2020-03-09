@@ -1,0 +1,31 @@
+.menu {
+  /* border: 1px solid red; */
+  padding: 12px;
+}
+
+.logo {
+  width: 250px;
+  padding: 12px 0 12px 8px;
+}
+
+.white {
+  color: white;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.menu-link {
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
+  text-transform: capitalize;
+  padding: 12px 0 12px 8px;
+}
+
+.menu-link:hover {
+  background-color: #FFAE00;
+  border-radius: 0 100px 100px 0;
+}

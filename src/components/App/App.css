@@ -5,9 +5,9 @@
 }
 
 .app {
-  /* display: flex; */
+  display: flex;
   background: #141527;
   height: 100vh;
   width: 100%;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
