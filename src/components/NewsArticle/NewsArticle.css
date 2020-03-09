@@ -9,3 +9,22 @@
   width: 100%;
   height: 30%;
 }
+
+.article-headline {
+  font-size: 16px;
+}
+
+.article-description {
+  font-size: 12px;
+}
+
+.article-link {
+  background-color: #B56AF1;
+  width: 100%;
+  padding: 5px;
+}
+
+.article-link a {
+  color: white;
+  text-decoration: none;
+}
