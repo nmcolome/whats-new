@@ -1,21 +1,33 @@
 .article-card {
-  width: 30%;
+  width: 48%;
   text-align: center;
   background-color: whitesmoke;
   margin: 10px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.article-img {
-  width: 100%;
-  height: 30%;
+.img-container {
+  height: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.content {
+  height: 50%;
+  padding: 12px;
 }
 
 .article-headline {
-  font-size: 16px;
+  font-size: 24px;
+  margin-bottom: 16px;
 }
 
 .article-description {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .article-link {
