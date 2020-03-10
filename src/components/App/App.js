@@ -2,26 +2,17 @@ import React, { Component } from 'react';
 import NewsContainer from '../NewsContainer/NewsContainer';
 import Menu from '../Menu/Menu';
 import SearchForm from '../SearchForm/SearchForm';
-import local from '../../data/local';
-import entertainment from '../../data/entertainment';
-import health from '../../data/health';
-import science from '../../data/science';
-import technology from '../../data/technology';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      local,
+      data: {},
+      local: {},
       value: '',
-    };
-    this.data = {
-      local,
-      entertainment,
-      health,
-      science,
-      technology
+      isLoading: false,
+      error: null
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,18 +20,17 @@ class App extends Component {
   }
 
   handleClick(value) {
-    this.setState({local: this.data[value]})
+    this.setState({local: this.state.data[value]})
   }
 
   handleSubmit(value) {
-    console.log(Object.values(this.state.local))
     this.setState({local: this.filterNews(value)})
   }
 
   filterNews(string) {
     const data = this.state.local;
     const matches = []
-    data.forEach((row) => { 
+    data.forEach((row) => {
       if (row["headline"].toLowerCase().includes(string) || row["description"].toLowerCase().includes(string)) {
         return matches.push(row)
       }
@@ -48,11 +38,36 @@ class App extends Component {
     return matches
   }
 
+  componentDidMount() {
+    this.setState({isLoading: true})
+
+    fetch('https://whats-new-api.herokuapp.com/api/v1/news')
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong...');
+        }
+      })
+      .then(data => this.setState({data: data, isLoading: false, local: data["local"]}))
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
   render () {
+    const { data, local, isLoading, error } = this.state
+
+    if (error) {
+      return <h1>{error.message}</h1>;
+    }
+
+    if (isLoading) {
+      return <h1>Loading...</h1>;
+    }
+
     return (
       <div className="app">
         <Menu
-          titles={Object.keys(this.data)}
+          titles={Object.keys(data)}
           handleClick={this.handleClick}
         />
         <div>
@@ -60,7 +75,7 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
           />
           <NewsContainer
-            data={this.state}
+            data={local}
           />
         </div>
       </div>
