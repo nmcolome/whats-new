@@ -1,0 +1,27 @@
+.form-container {
+  padding: 24px 16px 0 16px;
+  border-style: none;
+}
+
+.search-input {
+  width: 85%;
+  font-size: 22px;
+  color: #747474;
+  background-color: #141427;
+  padding: 8px;
+  border-style: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-submit {
+  background-color: #B56AF1;
+  color: white;
+  width: 15%;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 100px;
+  border-style: none;
+}

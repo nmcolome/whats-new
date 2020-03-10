@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewsContainer from '../NewsContainer/NewsContainer';
 import Menu from '../Menu/Menu';
+import SearchForm from '../SearchForm/SearchForm';
 import local from '../../data/local';
 import entertainment from '../../data/entertainment';
 import health from '../../data/health';
@@ -35,9 +36,12 @@ class App extends Component {
           titles={Object.keys(this.data)}
           handleClick={this.handleClick}
         />
-        <NewsContainer
-          data={this.state}
-        />
+        <div>
+          <SearchForm />
+          <NewsContainer
+            data={this.state}
+          />
+        </div>
       </div>
     );
   }
