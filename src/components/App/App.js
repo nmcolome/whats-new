@@ -13,7 +13,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      local
+      local,
+      value: '',
     };
     this.data = {
       local,
@@ -22,11 +23,29 @@ class App extends Component {
       science,
       technology
     };
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.filterNews = this.filterNews.bind(this);
   }
 
   handleClick(value) {
     this.setState({local: this.data[value]})
+  }
+
+  handleSubmit(value) {
+    console.log(Object.values(this.state.local))
+    this.setState({local: this.filterNews(value)})
+  }
+
+  filterNews(string) {
+    const data = this.state.local;
+    const matches = []
+    data.forEach((row) => { 
+      if (row["headline"].toLowerCase().includes(string) || row["description"].toLowerCase().includes(string)) {
+        return matches.push(row)
+      }
+    });
+    return matches
   }
 
   render () {
@@ -37,7 +56,9 @@ class App extends Component {
           handleClick={this.handleClick}
         />
         <div>
-          <SearchForm />
+          <SearchForm
+            handleSubmit={this.handleSubmit}
+          />
           <NewsContainer
             data={this.state}
           />

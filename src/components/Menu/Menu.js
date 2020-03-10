@@ -12,7 +12,6 @@ class Menu extends Component {
     this.props.handleClick(e.target.text);
   }
 
-
   render() {
     const titles = this.props.titles
     const links = titles.map((title) => <a onClick={this.getText} className="menu-link">{title}</a>)
