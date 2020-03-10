@@ -12,19 +12,32 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      local
+    };
+    this.data = {
       local,
       entertainment,
       health,
       science,
       technology
-    }
+    };
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(value) {
+    this.setState({local: this.data[value]})
   }
 
   render () {
     return (
       <div className="app">
-        <Menu data={Object.keys(this.state)} />
-        <NewsContainer data={this.state.local} />
+        <Menu
+          titles={Object.keys(this.data)}
+          handleClick={this.handleClick}
+        />
+        <NewsContainer
+          data={this.state}
+        />
       </div>
     );
   }
